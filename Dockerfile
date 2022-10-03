@@ -19,6 +19,7 @@ RUN install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl && \
     kubectl version --client && \
     wget https://github.com/digitalocean/doctl/releases/download/v1.65.0/doctl-1.65.0-linux-amd64.tar.gz && \
     tar xf doctl-1.65.0-linux-amd64.tar.gz && \
-    mv doctl /usr/local/bin
-RUN curl -s -L "https://github.com/loft-sh/devspace/releases/tag/v5.16.0" | sed -nE 's!.*"([^"]*devspace-linux-amd64)".*!https://github.com\1!p' | xargs -n 1 curl -L -o devspace && chmod +x devspace && \
-    install devspace /usr/local/bin;
+    mv doctl /usr/local/bin \
+RUN curl -sL https://deb.nodesource.com/setup_11.x  | bash -
+RUN apt-get -y install nodejs npm
+RUN npm install -g devspace@6.1.1 && devspace
